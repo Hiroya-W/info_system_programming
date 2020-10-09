@@ -8,7 +8,7 @@ public class Person {
     }
 
     public void setLastName(String lname) {
-        this.lastName =  lname;
+        this.lastName = lname;
     }
 
     public String getFirstName() {
@@ -19,7 +19,7 @@ public class Person {
         this.firstName = fname;
     }
 
-    public String getName(){
+    public String getName() {
         return getFirstName() + " " + getLastName();
     }
 
@@ -28,10 +28,10 @@ public class Person {
     }
 
     public void setAddress(String add) {
-        this.address =  add;
+        this.address = add;
     }
 
-    public void print(){
+    public void print() {
         System.out.println("Name: " + getName());
         System.out.println("Address: " + getAddress());
     }
