@@ -5,8 +5,8 @@ public class PersonTest {
         person.setFirstName("Hiroya");
         person.setLastName("Watanabe");
         person.setAddress("Kyoto");
-        System.out.println(person.getName());
-        System.out.println(person.getAddress());
+        System.out.println("Name: " + person.getName());
+        System.out.println("Address: " + person.getAddress());
         person.print();
     }
 }
