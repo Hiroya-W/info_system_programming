@@ -16,6 +16,6 @@ public class Circle extends Shape {
         float r;
 
         r = getRadius();
-        return (float)(3.14f * r * r);
+        return (float) (3.14f * r * r);
     }
 }

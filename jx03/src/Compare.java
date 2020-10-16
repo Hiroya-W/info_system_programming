@@ -1,5 +1,5 @@
-class Compare{
-    public static void main(String args[]){
+class Compare {
+    public static void main(String args[]) {
         String a = new String("abc");
         String b = new String("def");
         String c = new String("abc");
