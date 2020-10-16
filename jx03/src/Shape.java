@@ -32,7 +32,15 @@ public class Shape {
         c2.setName("Circle");
         c2.setRadius(3);
 
-        Shape shapeArray[] = {s1, c1, c2};
+        Square sq1 = new Square();
+        sq1.setName("Square");
+        sq1.setSide(5);
+
+        Square sq2 = new Square();
+        sq2.setName("Square");
+        sq2.setSide(2);
+
+        Shape shapeArray[] = {s1, c1, c2, sq1, sq2};
 
         for (int i = 0; i < shapeArray.length; i++) {
             Shape t = shapeArray[i];
