@@ -74,6 +74,6 @@ public class TryOverload {
         inst.times(3,4);
         inst.times("Happy", 3);
         inst.times(4,"Birthday");
-        inst.times("Happy", "Birthday");
+        inst.times("Happy ", "Birthday!");
     }
 }
