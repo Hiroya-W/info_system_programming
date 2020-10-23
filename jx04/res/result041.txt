@@ -1,0 +1,12 @@
+inst.getValInt(): 10
+inst.getValStr(): Hello World.
+inst.getValDouble(): 5.43
+12
+Happy
+Happy
+Happy
+Birthday
+Birthday
+Birthday
+Birthday
+HappyBirthday
