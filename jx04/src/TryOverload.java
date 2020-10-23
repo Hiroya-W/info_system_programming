@@ -29,36 +29,36 @@ public class TryOverload {
     }
 
     /* Overload */
-    public void setValue(int val){
+    public void setValue(int val) {
         valInt = val;
     }
 
-    public void setValue(String val){
+    public void setValue(String val) {
         valStr = val;
     }
 
-    public void setValue(double val){
+    public void setValue(double val) {
         valDouble = val;
     }
 
-    public void times(int val1, int val2){
+    public void times(int val1, int val2) {
         System.out.println(val1 * val2);
     }
 
-    public void times(String str, int num){
+    public void times(String str, int num) {
         for (int i = 0; i < num; i++) {
             System.out.println(str);
         }
     }
 
-    public void times(int num, String str){
+    public void times(int num, String str) {
         for (int i = 0; i < num; i++) {
             System.out.println(str);
         }
     }
 
-    public void times(String str1, String str2){
-        System.out.println(str1+ str2);
+    public void times(String str1, String str2) {
+        System.out.println(str1 + str2);
     }
 
     public static void main(String[] args) {
@@ -71,9 +71,9 @@ public class TryOverload {
         inst.setValue(5.43);
         System.out.println("inst.getValDouble(): " + inst.getValDouble());
 
-        inst.times(3,4);
+        inst.times(3, 4);
         inst.times("Happy", 3);
-        inst.times(4,"Birthday");
+        inst.times(4, "Birthday");
         inst.times("Happy ", "Birthday!");
     }
 }
