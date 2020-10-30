@@ -1,0 +1,5 @@
+No: 0123456789
+Name: Aoyama Ichiro
+No: 0123456790
+Name: Yamada Hanako
+No: q
