@@ -26,7 +26,7 @@ public class Edic extends JFrame implements ActionListener {
         bn1 = new JButton("Translate");
         bn2 = new JButton("Clear");
         bn3 = new JButton("Quit");
-        l1 = new JLabel("aaaa");
+        l1 = new JLabel("");
 
         c.add(tf1);
         c.add(bn1);
@@ -50,6 +50,7 @@ public class Edic extends JFrame implements ActionListener {
             }
         } else if (actionEvent.getSource() == bn2) {
             tf1.setText("");
+            l1.setText("");
         }
         else if(actionEvent.getSource() == bn3){
             System.exit(0);
