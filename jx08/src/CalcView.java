@@ -65,6 +65,10 @@ class CalcView extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+        // Linuxで実行した際に、読みにくいフォントで表示されてしまうため、フォントを変更しています
+        UIManager.put("Button.font",new Font("IPAPGothic", Font.PLAIN, 12)); //Buttonのフォント設定
+        UIManager.put("Label.font",new Font("IPAPGothic", Font.PLAIN, 12)); //Labelのフォント設定
+        UIManager.put("TextField.font",new Font("IPAPGothic", Font.PLAIN, 12)); //TextFieldのフォント設定
         CalcView cv = new CalcView();
 
         cv.setVisible(true);
