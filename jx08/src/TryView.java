@@ -13,7 +13,7 @@ class TryView extends JFrame implements ActionListener {
         setSize(180, 100);
         setTitle("TryView");
 
-        ctrl = new TryCtrl();
+//ctrl = new TryCtrl();
 
         c = getContentPane();
 
@@ -30,6 +30,10 @@ class TryView extends JFrame implements ActionListener {
         b2.addActionListener(this);
     }
 
+    public void setTryCtrl(TryCtrl tc) {
+        ctrl = tc;
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b1) {
             String str = l1.getText();
@@ -41,6 +45,11 @@ class TryView extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         TryView tv = new TryView();
+        TryCtrl tc = new TryCtrl();
+        TryModel tm = new TryModel();
+
+        tv.setTryCtrl(tc);
+        tc.setTryModel(tm);
 
         tv.setVisible(true);
     }

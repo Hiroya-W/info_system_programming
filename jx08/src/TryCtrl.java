@@ -1,11 +1,15 @@
 class TryCtrl {
     private TryModel mdl;
 
-    TryCtrl() {
-        mdl = new TryModel();
+    TryCtrl(){
+//mdl = new TryModel();
     }
 
-    public String convertMessage(String str) {
+    public void setTryModel(TryModel tm){
+        mdl = tm;
+    }
+
+    public String convertMessage(String str){
         String res;
 
         res = mdl.convertMessage(str);
