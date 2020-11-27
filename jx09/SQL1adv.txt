@@ -1,0 +1,26 @@
+1.
+SELECT st.sno, st.gno, go.gname, go.price, st.qty, go.price * qty
+	FROM Goods go, Stock st
+	WHERE go.gno = st.gno
+
+2.
+SELECT st.gno, st.qty, st.sno, go.gname, go.price
+	FROM Goods go, Stock st
+	WHERE go.gno = st.gno
+	ORDER BY st.gno ASC, st.qty DESC, st.sno ASC
+
+3.
+SELECT st.gno, st.sno, go.gname, go.price, st.qty, su.priority
+	FROM Goods go, Stock st, Supplier su
+	WHERE go.gno = st.gno AND st.sno = su.sno 
+		AND 10 < su.priority AND st.qty <= 2
+
+4.
+SELECT p1.pname, p1.child_name, p2.child_name AS grandchild
+	FROM person p1, person p2
+	WHERE p1.child_name = p2.pname
+
+5.
+SELECT gno, gname, price
+	FROM Goods
+	WHERE price > (SELECT price FROM Goods WHERE gno = 'G1')

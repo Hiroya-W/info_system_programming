@@ -1,0 +1,19 @@
+1.
+SELECT * FROM Stock
+
+2.
+SELECT gno, gname FROM Goods
+	WHERE 100 <= price AND price <= 300
+
+3.
+SELECT gno, gname, price, color FROM Goods
+	WHERE gname = 'eraser'
+
+4.
+SELECT gno, gname, price FROM Goods
+	ORDER BY price DESC
+
+5.
+SELECT go.gno, st.gno, st.sno, su.sno, go.gname, su.sname, st.qty
+	FROM Goods go, Stock st, Supplier su
+	WHERE go.gno = st.gno AND st.sno = su.sno
