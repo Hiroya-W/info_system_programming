@@ -1,0 +1,38 @@
+1.
+SELECT * FROM Goods
+	WHERE gname LIKE '______'
+
+2.
+SELECT * FROM Goods
+	WHERE color <> '' 
+		AND color IS NOT NULL
+		AND 100 < price
+
+3.
+SELECT sno, sum(qty) FROM Stock
+	WHERE 5 <= qty
+	GROUP BY sno
+
+4.
+SELECT gno, sum(qty) FROM Stock
+	GROUP BY gno
+	ORDER BY sum(qty) DESC
+
+5.
+SELECT g.gno,sum(g.price * s.qty) as sales
+	FROM Goods g INNER JOIN Stock s ON g.gno = s.gno
+	GROUP BY g.gno
+	HAVING sales >= 500
+	ORDER BY sales DESC
+
+6.
+SELECT p1.pname, p1.child_name, p2.child_name AS grandchild
+	FROM person p1 INNER JOIN person p2 ON p1.child_name = p2.pname 
+	WHERE grandchild IS NOT NULL
+
+7.
+SELECT * FROM Goods
+	WHERE color	IN ( 
+		SELECT color FROM Goods
+			WHERE price 
+			BETWEEN 100 and 200) 
