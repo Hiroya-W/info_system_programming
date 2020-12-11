@@ -1,0 +1,4 @@
+SQL: SELECT * FROM Student
+sno:00000001 sname:柏木松太郎 address:愛知県 age:21
+sno:00000002 sname:植田未来 address:山形県 age:43
+sno:00000003 sname:川野隆司 address:鳥取県 age:22
