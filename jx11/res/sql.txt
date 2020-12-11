@@ -1,0 +1,12 @@
+# 演習11(2)
+
+CREATE TABLE Student(
+	sno CHAR(8) NOT NULL,
+	sname CHAR(32) NOT NULL,
+	address VARCHAR(127),
+	age INT 
+)
+
+INSERT INTO Student VALUES('00000001', '柏木松太郎', '愛知県',21)
+INSERT INTO Student VALUES('00000002', '植田未来', '山形県',43)
+INSERT INTO Student VALUES('00000003', '川野隆司', '鳥取県',22)
