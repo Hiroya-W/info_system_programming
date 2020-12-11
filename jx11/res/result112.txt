@@ -1,0 +1,8 @@
+SQL: INSERT INTO Student VALUES('00000004', '長沢利伸', '新潟県', 42)
+query does not return ResultSet
+SQL: SELECT * FROM Student WHERE sno = '00000004'
+sno:00000004 sname:長沢利伸 address:新潟県 age:42
+SQL: UPDATE Student SET address='島根県' WHERE sno = '00000004'
+query does not return ResultSet
+SQL: SELECT * FROM Student WHERE sno = '00000004'
+sno:00000004 sname:長沢利伸 address:島根県 age:42
