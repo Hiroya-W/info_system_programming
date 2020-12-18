@@ -32,6 +32,14 @@ public class UpdTest {
         }
     }
 
+    public void executeUpdate(String sql) {
+        try {
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void print() {
         try {
             // 検索されたタプルを繰り返し処理する
@@ -75,7 +83,7 @@ public class UpdTest {
         // データ挿入
         sqlstr = "INSERT INTO Student VALUES('00000004', '長沢利伸', '新潟県', 42)";
         System.out.println("SQL: " + sqlstr);
-        db.executeQuery(sqlstr);
+        db.executeUpdate(sqlstr);
         // データの検索
         sqlstr = "SELECT * FROM Student WHERE sno = '00000004'";
         System.out.println("SQL: " + sqlstr);
@@ -85,7 +93,7 @@ public class UpdTest {
         // データの更新
         sqlstr = "UPDATE Student SET address='島根県' WHERE sno = '00000004'";
         System.out.println("SQL: " + sqlstr);
-        db.executeQuery(sqlstr);
+        db.executeUpdate(sqlstr);
         // データの検索
         sqlstr = "SELECT * FROM Student WHERE sno = '00000004'";
         System.out.println("SQL: " + sqlstr);
