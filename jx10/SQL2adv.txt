@@ -10,8 +10,8 @@ SELECT * FROM Goods
 
 3.
 SELECT sno, sum(qty) FROM Stock
-	WHERE 5 <= qty
 	GROUP BY sno
+	HAVING 5 <= sum(qty)
 
 4.
 SELECT gno, sum(qty) FROM Stock
