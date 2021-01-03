@@ -10,6 +10,11 @@ public class SelallCtrl {
         return db.getData();
     }
 
+    // 修正、挿入、削除を行う
+    public void update(String sql){
+        db.executeUpdate(sql);
+    }
+
     // dbfileで指定されたデータベースのオープンをdbに設定されたオブジェクトに依頼する．
     public void openDB(String dbfile){
         db.open(dbfile);

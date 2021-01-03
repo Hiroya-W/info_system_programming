@@ -14,6 +14,14 @@ public class SelallDB {
             System.out.println(e.getMessage());
         }
     }
+    public void executeUpdate(String sql) {
+        System.out.println(sql);
+        try {
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     // テーブルStudentのタプル数を返却する．
     public int getNdata() {

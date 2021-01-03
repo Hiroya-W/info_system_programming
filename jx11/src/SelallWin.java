@@ -1,15 +1,20 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
-public class SelallWin extends JFrame {
+// https://mrradiology.hatenablog.jp/entry/2020/03/05/095048
+public class SelallWin extends JFrame implements TableModelListener {
     SelallCtrl ctrl;
     JScrollPane sp;
     JTable tb;
-    DefaultTableModel tm;
+
+    MyTableModel tm;
+
+    String mydbfile = "/home/hiroya/Documents/git-repos/info_system_programming/jx11/stock3.sqlite3";
 
     public SelallWin() {
-        String[] colNames = new String[]{"sno", "sname", "address", "age"};
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("SelallWin");
 
@@ -17,11 +22,72 @@ public class SelallWin extends JFrame {
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
-        tm = new DefaultTableModel(new String[][]{}, colNames);
+//        tm = new DefaultTableModel(new String[][]{}, colNames);
+        tm = new MyTableModel();
+        tm.addTableModelListener(this);
         tb = new JTable(tm);
         sp = new JScrollPane(tb);
         sp.setPreferredSize(new Dimension(400, 300));
-        contentPane.add(sp);
+
+        SelallInputPanel panel = new SelallInputPanel(240, 250){
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String cmd = actionEvent.getActionCommand();
+                if("データを追加".equals(cmd)){
+                    String sql = "INSERT INTO Student VALUES(";
+                    sql += "'" + tf_array[0].getText() + "',";
+                    sql += "'" + tf_array[1].getText() + "',";
+                    sql += "'" + tf_array[2].getText() + "',";
+                    sql += "'" + tf_array[3].getText() + "');";
+
+                    ctrl.openDB(mydbfile);
+                    ctrl.update(sql);
+                    String[][] data = ctrl.getData();
+                    // 表示用の表のデータに登録
+                    setData(data);
+                    ctrl.closeDB();
+                    // 表示を更新
+                    tm.fireTableDataChanged();
+                }
+                else if("選択した行を削除".equals(cmd)){
+                    String selected_sno = tb.getValueAt(tb.getSelectedRow(),0).toString();
+                    String sql = "DELETE FROM Student WHERE sno = '" + selected_sno + "';";
+
+                    ctrl.openDB(mydbfile);
+                    ctrl.update(sql);
+                    String[][] data = ctrl.getData();
+                    // 表示用の表のデータに登録
+                    setData(data);
+                    ctrl.closeDB();
+                    // 表示を更新
+                    tm.fireTableDataChanged();
+                }
+            }
+        };
+        contentPane.add("Center", panel);
+        contentPane.add("East", sp);
+    }
+
+    @Override
+    public void tableChanged(TableModelEvent tableModelEvent) {
+        if (tableModelEvent.getColumn() != -1 && tableModelEvent.getFirstRow() != -1) {
+            // 変更されたセルの場所の値(変更後)
+            System.out.println(tb.getValueAt(tableModelEvent.getFirstRow(), tableModelEvent.getColumn()));
+            String val = tb.getValueAt(tableModelEvent.getFirstRow(), tableModelEvent.getColumn()).toString();
+            String sno = tm.change_index.toString();
+            // タプルの修正
+            String sql = "UPDATE Student SET ";
+            switch (tableModelEvent.getColumn()) {
+                case 0 -> sql += "sno = '" + val + "'";
+                case 1 -> sql += "sname = '" + val + "'";
+                case 2 -> sql += "address = '" + val + "'";
+                case 3 -> sql += "age = '" + val + "'";
+            }
+            sql += " WHERE sno = '" + sno + "';";
+            ctrl.openDB(mydbfile);
+            ctrl.update(sql);
+            ctrl.closeDB();
+        }
     }
 
     // ctrlに設定されたオブジェクトに依頼してテーブルStudentの情報を格納したStringの２次元配列を得る．
@@ -32,10 +98,11 @@ public class SelallWin extends JFrame {
     // テーブルStudentの情報を格納したStringの２次元配列dataをもらい，dataの値をテーブルに設定する．
     public void setData(String[][] data) {
         String[][] rows = getData();
+        System.out.println("Set Data");
         for (String[] row : rows) {
-            System.out.println(row[0]+row[1]+row[2]+row[3]);
-            tm.addRow(row);
+            System.out.println(row[0] + row[1] + row[2] + row[3]);
         }
+        tm.setData(rows);
     }
 
     // dbfileで指定されたデータベースのオープンをctrlに設定されたオブジェクトに依頼する．
@@ -57,7 +124,7 @@ public class SelallWin extends JFrame {
         SelallWin sw = new SelallWin();
         String[][] data;
 
-        sw.openDB("/home/hiroya/Documents/git-repos/info_system_programming/jx11/stock3.sqlite3");
+        sw.openDB(sw.mydbfile);
         data = sw.getData();
         sw.setData(data);
         sw.closeDB();
